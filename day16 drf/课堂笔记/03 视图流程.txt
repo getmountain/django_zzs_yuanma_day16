@@ -1,0 +1,36 @@
+path('api/blog/', views.BlogView.as_view()),
+
+
+class View(object):
+	
+	def as_view(...):
+		def view():
+			...dispatch()
+		return view
+
+	def dispatch(...):
+		func = getattr(self,请求的Method)
+		return func()
+
+class APIView(View):
+	
+	def as_view(...):
+		# 1.自定义功能  -> 免除csrf token
+		# 2.父类as_view
+
+	def dispatch(...):
+		# 1.请求的封装
+		# 2.版本、认证、权限、限流
+		# 3.反射getattr(self,请求的Method)
+		# 4.返回
+
+class BlogView(APIView):
+	def get(request,...):
+		pass
+
+	def post(request,...):
+		pass
+
+	def put(request,...):
+		pass
+

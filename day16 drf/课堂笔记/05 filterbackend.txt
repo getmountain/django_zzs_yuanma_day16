@@ -1,0 +1,41 @@
+情况1：
+	继承GenericAPIView 或 GenericViewSet
+
+	- 列表
+		queryset = self.get_queryset()
+
+	- 详细
+		obj = self.get_object()
+			1.queryset = self.get_queryset()
+			2.queryset = self.filter_queryset(queryset)
+			3.obj = queryset.get(pk=1)
+	- 修改
+		obj = self.get_object()
+	- 删除
+		obj = self.get_object()
+
+情况2：（*）
+	继承：ListModelMixin, CreateModelMixin, GenericViewSet)
+
+	- 列表
+		queryset = self.get_queryset()
+		queryset = self.filter_queryset(queryset)
+
+	- 详细
+		obj = self.get_object()
+			1.queryset = self.get_queryset()
+			2.queryset = self.filter_queryset(queryset)
+			3.obj = queryset.get(pk=1)
+	- 修改
+		obj = self.get_object()
+	- 删除
+		obj = self.get_object()
+
+=========================================================
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+1.以前视图继承 APIView、GenericAPIView
+	路由：
+    	path('api/demo/', demo.DemoView.as_view()),
+    	path('api/demo/<int:pk>/', demo.DemoDetailView.as_view()),
+    视图：
+    	class DemoView(GenericAPIView):
+    		def get(self, request):
+    			pass
+
+    		def post(self, request):
+    			pass
+
+    	class DemoDetailView(GenericAPIView):
+    		def get(self, request,pk):
+    			pass
+
+    		def put(self, request,pk):
+    			pass
+
+    		def delete(self, request,pk):
+    			pass
+
+    DRF 的API设计思路：
+    	api/demo/        GET          数据列表 
+		api/demo/        POST         新建数据
+		api/demo/10/     GET          获取指定一条数据详细
+		api/demo/10/     PUT          修改数据
+		api/demo/10/     DELETE       删除数据
+
+2.以前视图继承 APIView、GenericAPIView
+	路由：
+    	path('api/demo/', demo.DemoView.as_view()),
+    	path('api/demo/<int:pk>/', demo.DemoView.as_view()),
+    视图：
+    	class DemoView(GenericAPIView):
+    		def get(self, request,pk=None):
+    			if pk:
+    				获取单条数据
+    			else:
+    				获取数据列表数据
+
+
+    		def post(self, request):
+    			pass
+
+    		def put(self, request,pk):
+    			pass
+
+    		def delete(self, request,pk):
+    			pass
+    			
+    DRF 的API设计思路：
+    	api/demo/        GET          数据列表 
+		api/demo/        POST         新建数据
+		api/demo/10/     GET          获取指定一条数据详细
+		api/demo/10/     PUT          修改数据
+		api/demo/10/     DELETE       删除数据
+
+3.ViewSetMixin
+  对请求进行分发
+
+  DRF 的API设计思路：
+	api/demo/        GET          数据列表 
+	api/demo/        POST         新建数据
+	api/demo/10/     GET          获取指定一条数据详细
+	api/demo/10/     PUT          修改数据
+	api/demo/10/     DELETE       删除数据
+
+
+	api/demo/?gender=1&age=19
+
+
+  路由
+	path('api/demo/', demo.GvsView.as_view({"get":"list","post":"create"})),
+    path('api/demo/<int:pk>/', demo.GvsView.as_view({"get":"retrive","delete":"destroy","put":"update"})),
+
+
+    视图：
+    	class GvsView(ViewSetMixin):
+    		def list(self,request):
+    			pass # 获取数据列表
+
+    		def create(self,request):
+    			pass
+
+    		def retrive(self,request,pk):
+    			pass # 获取数据详细
+
+    		def destroy(self,request,pk):
+    			pass # 删除
+
+    		def update(self,request,pk):
+    			pass # 修改

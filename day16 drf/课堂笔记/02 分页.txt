@@ -1,0 +1,46 @@
+/accounts/?offset=0&limit=2
+	1	武沛齐
+	2	武沛齐
+
+/accounts/?offset=2&limit=2
+	3	武沛齐
+	4	武沛齐
+
+/accounts/?offset=4&limit=2
+	3	武沛齐
+	4	武沛齐
+
+/accounts/?offset=6&limit=2
+	3	武沛齐
+	4	武沛齐
+---------------------------bug,数据可能重复-------------------
+- 展示数据，ID倒序
+- 分页获取
+
+/accounts/?offset=0&limit=2
+	13	武沛齐
+	12	武沛齐
+/accounts/?offset=2&limit=2
+	11	武沛齐
+	10	武沛齐
+/accounts/?offset=4&limit=2
+	10	武沛齐
+	9	武沛齐
+--------------------------------------------------------------
+13
+/accounts/?offset=0&limit=2&lastid=0
+	13	武沛齐
+	12	武沛齐     max_id=12
+
+/accounts/?offset=0&limit=2&lastid=12
+	11	武沛齐
+	10	武沛齐      max_id=10
+
+/accounts/?offset=0&limit=2&lastid=10
+	9	武沛齐
+	8	武沛齐
+
+
+
+
+
